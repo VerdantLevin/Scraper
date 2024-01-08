@@ -1,24 +1,24 @@
 Clone repo:
-'''commandline
+```commandline
 git clone https://github.com/VerdantLevin/Scraper.git
-'''
+```
 Move to directory:
-'''commandline
+```commandline
 cd Scraper/
-'''
+```
 Initialize venv:
-'''commandline
+```commandline
 python -m venv .venv
-'''
+```
 Run venv:
-'''commandline
+```commandline
 source .venv/bin/activate
-'''
+```
 or
-'''commandline
+```commandline
 .venv/Scripts/Activate.ps1  
-'''
+```
 Install dependencies:
-'''commandline
+```commandline
 pip install -r requiremwnts.txt
-'''
+```
