@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Đánh giá khách sạn tại Hà Nội</h1>
+    <br>
+    <br>
+    {% for hotel in hotels %}
+        <h2>Tên khách sạn: </h2><span>{{hotel.ten_ks}}</span>
+        <p>Điểm: </p><span>{{hotel.so_sao}}</span>
+        <p>Số đánh giá: </p><span>{{hotel.danh_gia}}</span>
+        <p>Địa chỉ: </p><span>{{hotel.dia_chi}}</span>
+        <button type="button" class="collapsible">Một số đánh giá của khách hàng: </button>
+        <div class="comment">
+            {% for comment in hotel.binh_luan %}
+                <h3>{{comment.ho_ten}}</h3>
+                <p>Ngày tháng: {{comment.ngay_thang}}</p>
+                <p>Cảm nhận khách hàng: {{comment.cam_nhan_kh}}</p>
+                <p>Đánh giá: {{comment.so_sao_dg}}</p>
+                <p>Nhận xét: {{comment.nhan_xet}}</p>
+                <br>
+            {%endfor%}
+        </div>
+    {% endfor %}
+</body>
+</html>
