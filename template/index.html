@@ -12,10 +12,10 @@
     <br>
     <br>
     {% for hotel in hotels %}
-        <h2>Tên khách sạn: </h2><span>{{hotel.ten_ks}}</span>
-        <p>Điểm: </p><span>{{hotel.so_sao}}</span>
-        <p>Số đánh giá: </p><span>{{hotel.danh_gia}}</span>
-        <p>Địa chỉ: </p><span>{{hotel.dia_chi}}</span>
+        <h2>Tên khách sạn: <span>{{hotel.ten_ks}}</span></h2>
+        <p>Điểm: <span>{{hotel.so_sao}}</span></p>
+        <p>Số đánh giá: <span>{{hotel.danh_gia}}</span></p>
+        <p>Địa chỉ: <span>{{hotel.dia_chi}}</span></p>
         <button type="button" class="collapsible">Một số đánh giá của khách hàng: </button>
         <div class="comment">
             {% for comment in hotel.binh_luan %}
