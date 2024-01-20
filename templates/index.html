@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Đánh giá khách sạn tại Hà Nội</h1>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Tên khách sạn</th>
+            <th>Địa chỉ</th>
+            <th>Điểm</th>
+            <th>Số đánh giá</th>
+        </tr>
+        {% for hotel in hotels %}
+            <tr>
+                <td>{{hotel[0]}}</td>
+                <td><a href= "{{url_for('details', id=hotel[0])}}">{{hotel[1]}}</a></td>
+                <td>{{hotel[4]}}</td>
+                <td>{{hotel[2]}}</td>
+                <td>{{hotel[3]}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

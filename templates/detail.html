@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chi tiết khách sạn</h1>
+    <br><br>
+    <h2>Tên khách sạn: {{detail[1]}}</h2>
+    <h2>Địa chỉ: {{detail[4]}}</h2>
+    <h2>Điểm: {{detail[2]}}</h2>
+    <h2>Số đánh giá: {{detail[3]}}</h2>
+    <br><br>
+    
+    <h1>Một số đánh giá của khách hàng:</h1>
+    <div class="comment">
+        {% for comment in comments %}
+            <h3>{{comment[2]}}</h3>
+            <p>Ngày tháng: {{comment[3]}}</p>
+            <p>Cảm nhận khách hàng: {{comment[4]}}</p>
+            <p>Đánh giá: {{comment[6]}}</p>
+            <p>Nhận xét: {{comment[5]}}</p>
+            <br>
+        {%endfor%}
+    </div>
+    <a href="{{url_for('index')}}"">Quay về trang chính</a>
+</body>
+</html>

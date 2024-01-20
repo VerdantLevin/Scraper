@@ -2,15 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import matplotlib.pyplot as plt
-from flask import Flask, render_template
 import json
 import sqlite3
-
-
-app = Flask(__name__)
-app.secret_key = "vevdvwfwefw".encode("utf8")
-app.template_folder = "templates"
-app.static_folder = "static"
 
 def create_database():
     with sqlite3.connect('hotels.db') as conn:
@@ -118,7 +111,7 @@ def crawl(so_trang, url):
         hotels.append(hotel)
         
 
-#lay ra toan bo so trang trong web
+#Get the number of pages
 def get_pagination(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
@@ -230,11 +223,6 @@ def print_to_text():
             f.write('\n')
     print("Đã lưu file hotels.txt thành công!")
 
-#Tao trang web hien thi   
-@app.route("/", methods = ["GET","POST"])
-def index():
-    return render_template("index.html", hotels = hotels)
-    
 if __name__ == "__main__":
     create_database()
     url1 = "https://khachsan.chudu24.com/t.hanoi.html"
@@ -246,4 +234,3 @@ if __name__ == "__main__":
         insert_data_into_db(hotel)
     hotels_data = [hotel.__dict__ for hotel in hotels]
     save_to_json(hotels_data)
-    app.run()
