@@ -1,24 +1,51 @@
-.collapsible {
-    background-color: olivedrab;
-    color: white;
-    cursor: pointer;
-    padding: 18px;
-    width: 80%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 20px 5vw ;
+    padding: 0;
 }
 
-.active, .collapsible:hover {
-    background-color: #555;
+h1, h2, h3 {
+    color: #333;
 }
-  
-.content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.comment {
+    margin-top: 20px;
+}
+
+.comment h3 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.comment p {
+    margin: 0;
+    color: #666;
 }
 
 h1{
@@ -28,10 +55,18 @@ h1{
 }
 
 h2{
-    padding: 18px;
-    width: 80%;
     border: none;
     outline: none;
     font-size: medium;
     font-weight: 300;
+}
+
+h3 .comment-header{
+    color: darkolivegreen;
+    font-weight: 500;
+}
+
+ .detail{
+    margin: 0 5vw ;
+    padding: 5px 20px;
 }

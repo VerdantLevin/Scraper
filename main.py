@@ -1,12 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-import matplotlib.pyplot as plt
 import json
 import sqlite3
 
 def create_database():
-    with sqlite3.connect('hotels.db') as conn:
+    with sqlite3.connect('db/hotels.db') as conn:
         cursor = conn.cursor()
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS hotels (
@@ -35,7 +34,7 @@ def create_database():
 
 
 def insert_data_into_db(hotel):
-    with sqlite3.connect('hotels.db') as conn:
+    with sqlite3.connect('db/hotels.db') as conn:
         cursor = conn.cursor()
         cursor.execute("INSERT INTO hotels (ten_ks, so_sao, danh_gia, dia_chi) VALUES (?, ?, ?, ?)",
                        (hotel.ten_ks, hotel.so_sao, hotel.danh_gia, hotel.dia_chi))
@@ -139,66 +138,6 @@ def convert_to_dict(obj):
 def save_to_json(data):
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(data, f, default=convert_to_dict, ensure_ascii=False, indent=4)
-
-# Summarize hotels by score
-def summarize_by_score():
-    scores = {}
-    for hotel in hotels:
-        score_k = int(float(hotel.so_sao))
-        if score_k not in scores:
-            scores.update({score_k:1})
-        else:
-            score_v = scores[score_k]
-            scores.update({score_k: score_v+1})
-    x = scores.keys()
-    y = scores.values()
-    plt.bar(x, y)
-    plt.xlabel("Điểm")
-    plt.ylabel("Số lượng")
-    plt.title("Thống kê khách sạn theo điểm")
-    plt.savefig("./SBScore.png")
-    plt.show()
-
-# Summarize hotels by number of reviews
-def summarize_by_reviews():
-    rev_num = {}
-    for hotel in hotels:
-        rev_k = int(hotel.danh_gia)
-        if rev_k not in rev_num:
-            rev_num.update({rev_k:1})
-        else:
-            rev_num.update({rev_k: rev_num[rev_k]+1})
-    x = rev_num.keys()
-    y = rev_num.values()
-    plt.bar(x,y)
-    plt.xlabel("Số đánh giá")
-    plt.ylabel("Số lượng")
-    plt.title("Thống kê khách sạn theo đánh giá")
-    plt.savefig("./SBReview.png")
-    plt.show()
-        
-# Summarize hotels by districts
-def summarize_by_districts():
-    count = 0
-    total = 0
-    districts = {"Hoàn Kiếm": 0, "Đống Đa": 0, "Tây Hồ": 0, "Hai Bà Trưng": 0, "Ba Đình": 0, "Cầu Giấy": 0, "Từ Liêm": 0, "Hà Đông": 0, "Khác": 0}
-    for hotel in hotels:
-        total += 1
-        for key in districts:
-            if key in hotel.dia_chi:
-                districts.update({key: districts[key]+1})
-                count += 1
-                break
-    districts.update({"Khác": total-count})
-    x = districts.keys()
-    y = districts.values()
-    plt.bar(x,y)
-    plt.xlabel("Quận")
-    plt.xticks(rotation=45,ha='right')
-    plt.ylabel("Số lượng")
-    plt.title("Thống kê khách sạn theo khu vực")
-    plt.savefig("./SBDistrict.png")
-    plt.show()
     
 def print_to_text():
     # Open the file for writing

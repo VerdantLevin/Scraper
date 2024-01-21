@@ -9,16 +9,18 @@
 <body>
     <h1>Chi tiết khách sạn</h1>
     <br><br>
-    <h2>Tên khách sạn: {{detail[1]}}</h2>
-    <h2>Địa chỉ: {{detail[4]}}</h2>
-    <h2>Điểm: {{detail[2]}}</h2>
-    <h2>Số đánh giá: {{detail[3]}}</h2>
+    <div class="detail">
+        <h2>Tên khách sạn: {{detail[1]}}</h2>
+        <h2>Địa chỉ: {{detail[4]}}</h2>
+        <h2>Điểm: {{detail[2]}}</h2>
+        <h2>Số đánh giá: {{detail[3]}}</h2>
+    </div>
     <br><br>
     
     <h1>Một số đánh giá của khách hàng:</h1>
     <div class="comment">
         {% for comment in comments %}
-            <h3>{{comment[2]}}</h3>
+            <h3 class="comment-header">{{comment[2]}}</h3>
             <p>Ngày tháng: {{comment[3]}}</p>
             <p>Cảm nhận khách hàng: {{comment[4]}}</p>
             <p>Đánh giá: {{comment[6]}}</p>
