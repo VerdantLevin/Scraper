@@ -6,7 +6,7 @@ body {
     padding: 0;
 }
 
-h1, h2, h3 {
+h1, h2 {
     color: #333;
 }
 
@@ -39,7 +39,8 @@ a:hover {
 }
 
 .comment h3 {
-    color: #333;
+    color:#2440cc;
+    font-weight: 700;
     margin-bottom: 5px;
 }
 
@@ -59,11 +60,6 @@ h2{
     outline: none;
     font-size: medium;
     font-weight: 300;
-}
-
-h3 .comment-header{
-    color: darkolivegreen;
-    font-weight: 500;
 }
 
  .detail{

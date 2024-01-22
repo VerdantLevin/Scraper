@@ -10,9 +10,24 @@
     <h1>Đánh giá khách sạn tại Hà Nội</h1>
     <br>
     <br>
+    <span class ="filter">
+        Select category:
+        <nav>
+            <a href="{{url_for('sorted_index', district = 'all')}}">All</a>  |  
+            <a href="{{url_for('sorted_index', district = 'Hoàn_Kiếm')}}">Q. Hoàn Kiếm</a>  |  
+            <a href="{{url_for('sorted_index', district = 'Hai_Bà_Trưng')}}">Q. Hai Bà Trưng</a>  |  
+            <a href="{{url_for('sorted_index', district = 'Cầu_Giấy')}}">Q. Cầu Giấy</a>  |  
+            <a href="{{url_for('sorted_index', district = 'Đống_Đa')}}">Q. Đống Đa</a>  |  
+            <a href="{{url_for('sorted_index', district = 'Tây_Hồ')}}">Q. Tây Hồ</a>  |  
+            <a href="{{url_for('sorted_index', district = 'Hà_Đông')}}">Q. Hà Đông</a>  |  
+            <a href="{{url_for('sorted_index', district = 'Từ_Liêm')}}">Q. Từ Liêm</a>  |  
+            <a href="{{url_for('index')}}">Default</a>
+        </nav>
+    </span>
+    <br>
+    <br>
     <table>
         <tr>
-            <th>STT</th>
             <th>Tên khách sạn</th>
             <th>Địa chỉ</th>
             <th>Điểm</th>
@@ -20,7 +35,6 @@
         </tr>
         {% for hotel in hotels %}
             <tr>
-                <td>{{hotel[0]}}</td>
                 <td><a href= "{{url_for('details', id=hotel[0])}}">{{hotel[1]}}</a></td>
                 <td>{{hotel[4]}}</td>
                 <td>{{hotel[2]}}</td>
@@ -28,6 +42,5 @@
             </tr>
         {% endfor %}
     </table>
-
 </body>
 </html>

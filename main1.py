@@ -4,7 +4,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import time
-import re
 import json
 import os
 import sqlite3
@@ -44,12 +43,12 @@ class Hotel:
         }    
 hotels = []
 
-driver = webdriver.Firefox()  # or webdriver.Chrome(), depending on the browser you want to use
+driver = webdriver.Chrome()  # or webdriver.Chrome(), depending on the browser you want to use
 
 # Navigate to the URL
 driver.get("https://www.agoda.com/vi-vn/search?city=2758&ds=PXwtKGwWe71gI0kf")
 
-for i in range(10):
+for i in range(8):
 # Wait for the web page to load
     wait = WebDriverWait(driver, 10)
     wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.Box-sc-kv6pi1-0.hRUYUu.JacketContent.JacketContent--Empty')))
@@ -82,7 +81,7 @@ for i in range(10):
         try:
             driver.get("https://www.agoda.com" + link)
             
-            waits = WebDriverWait(driver, 80)
+            waits = WebDriverWait(driver, 200)
             waits.until(EC.presence_of_element_located((By.CSS_SELECTOR, '.Review-comment-bodyText')))
             soup = BeautifulSoup(driver.page_source, "html.parser")
 
@@ -141,20 +140,13 @@ for i in range(10):
         except Exception:
             continue
     driver.close()
-
     time.sleep(1)
     # Switch back to the original tab
     driver.switch_to.window(driver.window_handles[0])
-
     # Find the next page button by its CSS selector (replace 'css_selector' with the actual CSS selector)
     next_page_button = driver.find_element(By.ID, 'paginationNext')
-    if next_page_button:
-        next_page_button.click()
-    else:
-        break
+    next_page_button.click()
 
-
-'''
 # Check if the file exists and is not empty
 if os.path.exists('hotels.json') and os.path.getsize('hotels.json') > 0:
     # Read the existing data
@@ -180,12 +172,4 @@ print("Đã lưu file hotels.json thành công!")
 
 # Don't forget to close the browser when you're done
 driver.quit()
-'''
 
-conn = sqlite3.connect("db/hotels.db")
-cursor = conn.cursor()
-for hotel in hotels:
-    cursor.execute(f"SELECT 1 FROM hotels WHERE ten_ks = '{hotel.ten_ks}'")
-    if cursor.rowcount==0:
-        conn.execute(f"INSERT INTO hotels (ten_ks, so_sao, danh_gia, dia_chi) VALUES ('{hotel.ten_ks}','{hotel.so_sao}','{hotel.danh_gia}','{hotel.dia_chi}')")
-conn.commit()    

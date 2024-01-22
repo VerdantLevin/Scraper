@@ -17,6 +17,22 @@ def index():
     hotels = cursor.fetchall()
     conn.close()
     return render_template("index.html", hotels = hotels)
+
+@app.route("/sorted/<string:district>")
+def sorted_index(district):
+    conn = sqlite3.connect(dbname)
+    cursor = conn.cursor()
+    cmline = f"SELECT * FROM hotels"
+    if district == "all":
+        pass
+    else:
+        temp = district.replace("_"," ")
+        cmline += f" WHERE dia_chi LIKE '%{temp}%'"
+    cmline += f" ORDER BY CAST (so_sao AS FLOAT) DESC"
+    cursor.execute(cmline)
+    hotels = cursor.fetchall()
+    conn.close()
+    return render_template("index.html", hotels = hotels)
     
 #Tao trang cho tung khach san
 @app.route("/details/<int:id>", methods = ["GET"])
