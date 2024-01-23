@@ -1,14 +1,14 @@
 import sqlite3
 import matplotlib.pyplot as plt
 
-dbname = "/db/hotels.db"
+dbname = "db/hotels.db"
 hotels = []
 
 # Summarize hotels by score
-def summarize_by_score():
+def summarize_by_score(hotels):
     scores = {}
     for hotel in hotels:
-        score_k = int(float(hotel.so_sao))
+        score_k = int(float(hotel['so_sao']))
         if score_k not in scores:
             scores.update({score_k:1})
         else:
@@ -24,10 +24,10 @@ def summarize_by_score():
     plt.show()
 
 # Summarize hotels by number of reviews
-def summarize_by_reviews():
+def summarize_by_reviews(hotels):
     rev_num = {}
     for hotel in hotels:
-        rev_k = int(hotel.danh_gia)
+        rev_k = int(hotel['danh_gia'])
         if rev_k not in rev_num:
             rev_num.update({rev_k:1})
         else:
@@ -42,7 +42,7 @@ def summarize_by_reviews():
     plt.show()
         
 # Summarize hotels by districts
-def summarize_by_districts():
+def summarize_by_districts(hotels):
     count = 0
     total = 0
     districts = {"Hoàn Kiếm": 0, "Đống Đa": 0, "Tây Hồ": 0, "Hai Bà Trưng": 0, "Ba Đình": 0, "Cầu Giấy": 0, "Từ Liêm": 0, "Hà Đông": 0, "Khác": 0}
@@ -69,6 +69,6 @@ if __name__ == "__main__":
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM hotels")
     hotels = cursor.fetchall()
-    summarize_by_score()
-    summarize_by_districts()
-    summarize_by_reviews()
+    summarize_by_score(hotels)
+    summarize_by_districts(hotels)
+    summarize_by_reviews(hotels)
